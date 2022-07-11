@@ -1,0 +1,48 @@
+mycar:
+  brand: DO
+  price: 399
+spring:
+  mvc:
+   hiddenmethod:
+#     static-path-pattern: /res/**
+     filter:
+       enabled: true
+   contentnegotiation:
+     favor-parameter: true
+#   static-locations: [classpath:/haha/]
+#   add-mappings: true
+   cache:
+     period: 11000
+#数据库导入
+  datasource:
+    url: jdbc:mysql://localhost:3306/book
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      aop-patterns: com.atlong.springbootdemo1.*  #springbean监控
+      filters: stat,wall,slf4j  #所有开启的功能
+      stat-view-servlet:  #监控页配置
+        enabled: true
+        login-username: admin
+        login-password: admin
+        reset-enable: false
+      web-stat-filter: #web监控
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      filter:
+        stat: #sql监控
+          slow-sql-millis: 1000
+          log-slow-sql: true
+          enabled: true
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+mybatis-plus: # mybatis-plus配置
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
